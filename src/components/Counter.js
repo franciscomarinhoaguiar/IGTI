@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 import css from './counter.module.css';
+import DecrementButton from './DecrementButton';
+import IncrementButton from './IncrementButton';
+import Value from './Value';
 
 export default class Counter extends React.Component {
   constructor() {
@@ -12,18 +15,11 @@ export default class Counter extends React.Component {
     };
   }
 
-  handleButtonDownClick = () => {
+  handleButtonClick = (type) => {
+    console.log(type);
     const { currentCounter, steps } = this.state;
     this.setState({
-      currentCounter: currentCounter - 1,
-      steps: steps + 1,
-    });
-  };
-
-  handleButtonUpClick = () => {
-    const { currentCounter, steps } = this.state;
-    this.setState({
-      currentCounter: currentCounter + 1,
+      currentCounter: type === '+' ? currentCounter + 1 : currentCounter - 1,
       steps: steps + 1,
     });
   };
@@ -33,20 +29,11 @@ export default class Counter extends React.Component {
 
     return (
       <div className={css.counterContainer}>
-        <button
-          onClick={this.handleButtonDownClick}
-          className="wafes-effect waves-light btn red darken-4"
-        >
-          -
-        </button>
-        <span className={css.counterValue}>{currentCounter}</span>
-        <button
-          onClick={this.handleButtonUpClick}
-          className="wafes-effect waves-light btn green darken-4"
-        >
-          +
-        </button>
-        <span className={css.counterValue}>{steps}</span>
+        <DecrementButton onDecrement={this.handleButtonClick} />
+        <Value value={currentCounter} />
+        <IncrementButton onIncrement={this.handleButtonClick} />
+
+        <Value value={steps} />
       </div>
     );
   }
