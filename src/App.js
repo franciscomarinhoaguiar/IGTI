@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Counter from './components/Counter';
 import Header from './components/Header';
 import Counter2 from './components/Counter2';
+import Band from './components/Band';
 
 export default class App extends Component {
   constructor() {
@@ -21,6 +22,9 @@ export default class App extends Component {
     const { currentCounter, steps } = this.state;
     return (
       <div>
+        <h3>Band</h3>
+        <Band />
+
         <Header headerText="Hello world" />
 
         <Counter />
